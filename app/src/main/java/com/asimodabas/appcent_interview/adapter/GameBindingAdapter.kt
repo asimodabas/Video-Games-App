@@ -5,7 +5,6 @@ import androidx.databinding.BindingAdapter
 import com.asimodabas.appcent_interview.loadImage
 
 class GameBindingAdapter {
-
     companion object {
         @BindingAdapter("load_image")
         @JvmStatic
