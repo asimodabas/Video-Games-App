@@ -9,7 +9,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.asimodabas.appcent_interview.R
 import com.asimodabas.appcent_interview.databinding.ActivityMainBinding
 import com.asimodabas.appcent_interview.toastMessage
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
