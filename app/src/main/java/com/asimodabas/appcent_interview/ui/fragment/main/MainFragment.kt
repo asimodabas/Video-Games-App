@@ -45,23 +45,18 @@ class MainFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 
-        onCreateFinished()
-        observeEvents()
-    }
-
-    fun onCreateFinished() {
         viewModel.getData(API_KEY)
+        observeEvents()
     }
 
     fun observeEvents() {
         with(viewModel) {
-
             gameResponse.observe(viewLifecycleOwner, Observer {
 
                 it?.let {
                     it.results?.let { it1 -> setRecycler(it1) }
-                    it.results?.let { it2 -> setSearchView(it2) }
-                    it.results?.let { it3 -> setViewPager(it3) }
+                    it.results?.let { it2 -> changeSearchView(it2) }
+                    it.results?.let { it3 -> changeViewPager(it3) }
                 }
             })
 
@@ -98,13 +93,12 @@ class MainFragment : Fragment() {
                     Navigation.findNavController(requireView()).navigate(navigation)
                 }
             }
-
         })
         binding.mainRecyclerView.adapter = recyclerAdapter
         recyclerAdapter.setList(data)
     }
 
-    private fun setSearchView(games: List<Result>) {
+    private fun changeSearchView(games: List<Result>) {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
@@ -125,7 +119,7 @@ class MainFragment : Fragment() {
         })
     }
 
-    private fun setViewPager(games: List<Result>) {
+    private fun changeViewPager(games: List<Result>) {
         val indexThreeGame = ArrayList<Result>()
         val newIndexThreeGame = addTopThreeGame(games, indexThreeGame)
         initViewPager(newIndexThreeGame)
@@ -147,5 +141,10 @@ class MainFragment : Fragment() {
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         viewPagerAdapter.setList(newIndexThreeGame)
         viewPager.adapter = viewPagerAdapter
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
