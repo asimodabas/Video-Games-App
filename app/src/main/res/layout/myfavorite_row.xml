@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="game"
+            type="com.asimodabas.appcent_interview.model.Detail" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivFavorite"
+                load_image="@{String.valueOf(game.imageUrl)}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/tvNameOfFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="30dp"
+                android:ellipsize="end"
+                android:text="@{game.name, default=Name}"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/ivFavorite"
+                app:layout_constraintTop_toTopOf="@+id/ivFavorite" />
+
+            <TextView
+                android:id="@+id/tvReleased"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:text="@{String.valueOf(game.released), default=Released}"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivFavorite"
+                app:layout_constraintStart_toStartOf="@+id/tvNameOfFavorite"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameOfFavorite" />
+
+            <TextView
+                android:id="@+id/tvMetacritic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:ellipsize="end"
+                android:text="@{game.metacritic, default=Metacritic}"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvReleased"
+                app:layout_constraintStart_toEndOf="@+id/tvReleased" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

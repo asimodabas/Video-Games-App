@@ -50,7 +50,7 @@ class DetailFragment : Fragment() {
 
     fun observeEvents() {
         with(viewModel) {
-            detailResponse.observe(viewLifecycleOwner, Observer {
+            detailResponse.observe(viewLifecycleOwner) {
                 it?.let {
                     myVisibilties(false)
                     nowData = it
@@ -71,7 +71,7 @@ class DetailFragment : Fragment() {
                     binding.textViewDescription.text = it.description
                     favClickButton(it)
                 }
-            })
+            }
 
             isLoading.observe(viewLifecycleOwner) {
                 myVisibilties(it)

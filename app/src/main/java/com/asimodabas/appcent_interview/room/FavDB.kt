@@ -9,13 +9,13 @@ import com.asimodabas.appcent_interview.model.Detail
 @Database(entities = [Detail::class], version = 1)
 abstract class FavDB : RoomDatabase() {
 
-    abstract fun myFavGame() : FavDAO
+    abstract fun myFavGame(): FavDAO
 
-    companion object{
-
-        @Volatile private var instance : FavDB? = null
+    companion object {
+        @Volatile
+        private var instance: FavDB? = null
         private val lock = Any()
-        operator fun invoke(context: Context) = instance ?: synchronized(lock){
+        operator fun invoke(context: Context) = instance ?: synchronized(lock) {
             instance ?: createDatabase(context).also {
                 instance = it
             }
@@ -27,5 +27,4 @@ abstract class FavDB : RoomDatabase() {
             "myFavorites"
         ).build()
     }
-
 }
