@@ -17,7 +17,11 @@
         android:id="@+id/detailFragment"
         android:name="com.asimodabas.appcent_interview.ui.fragment.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="argId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.asimodabas.appcent_interview.ui.fragment.favori.FavoriteFragment"

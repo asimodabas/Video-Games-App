@@ -7,7 +7,7 @@
     <data>
 
         <variable
-            name="onItemClickListener"
+            name="onClickListener"
             type="com.asimodabas.appcent_interview.listener.GameClickListener" />
 
         <variable
@@ -15,10 +15,10 @@
             type="com.asimodabas.appcent_interview.model.Result" />
     </data>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> onItemClickListener.GameClick(game)}">
+        android:onClick="@{() -> onClickListener.GameClick(game)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -41,14 +41,14 @@
                 android:id="@+id/textViewName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="50dp"
-                android:text="@{game.name}"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@{game.name, default=Name}"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageViewHome"
                 app:layout_constraintTop_toTopOf="@+id/imageViewHome" />
 
@@ -56,8 +56,8 @@
                 android:id="@+id/textViewRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(game.rating)}"
-                android:textSize="10sp"
+                android:text="@{String.valueOf(game.rating), default=Rating}"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewHome"
                 app:layout_constraintStart_toStartOf="@+id/textViewName"
                 app:layout_constraintTop_toBottomOf="@+id/textViewName" />
@@ -66,11 +66,12 @@
                 android:id="@+id/tvReleased"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="@{game.released}"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewRating"
-                app:layout_constraintStart_toEndOf="@+id/textViewRating" />
+                android:layout_marginStart="25dp"
+                android:text="@{game.released, default=Released}"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewHome"
+                app:layout_constraintStart_toEndOf="@+id/textViewRating"
+                app:layout_constraintTop_toBottomOf="@+id/textViewName" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>
