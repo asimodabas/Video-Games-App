@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.asimodabas.appcent_interview.model.Detail
 
 @Dao
@@ -13,4 +14,7 @@ interface FavDAO {
 
     @Delete
     fun delete(gameDetail: Detail)
+
+    @Query("SELECT * FROM Detail")
+    fun getDetail(): List<Detail>
 }

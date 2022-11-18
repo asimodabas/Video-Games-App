@@ -11,7 +11,6 @@ class MainRepository
     suspend fun getData(
         apiKey: String
     ) = safeApiRequest {
-        println("repository getdata")
         apiFactory.getData(apiKey)
     }
 }

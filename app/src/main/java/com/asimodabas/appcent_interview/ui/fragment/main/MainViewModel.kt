@@ -28,7 +28,6 @@ class MainViewModel
                 gameResponse.value = request.data
             }
             is NetworkCheck.Error -> {
-                println(request.message.toString())
                 onError.value = request.message
             }
         }

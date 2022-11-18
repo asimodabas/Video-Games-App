@@ -40,7 +40,6 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel = ViewModelProvider(requireActivity())[DetailViewModel::class.java]
 
         viewModel.getDetail(args.argId, API_KEY)
