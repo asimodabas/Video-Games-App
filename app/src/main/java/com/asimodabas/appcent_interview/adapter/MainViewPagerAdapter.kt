@@ -51,5 +51,4 @@ class MainViewPagerAdapter(private val listener: GameViewPagerListener) :
         games.addAll(gamesListForViewPager)
         notifyDataSetChanged()
     }
-
 }

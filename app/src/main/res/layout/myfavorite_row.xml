@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/ivFavorite"
+                android:id="@+id/imageViewFavori"
                 load_image="@{String.valueOf(game.imageUrl)}"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -34,7 +34,7 @@
                 app:srcCompat="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/tvNameOfFavorite"
+                android:id="@+id/textViewFavoriName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -45,30 +45,30 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/ivFavorite"
-                app:layout_constraintTop_toTopOf="@+id/ivFavorite" />
+                app:layout_constraintStart_toEndOf="@+id/imageViewFavori"
+                app:layout_constraintTop_toTopOf="@+id/imageViewFavori" />
 
             <TextView
-                android:id="@+id/tvReleased"
+                android:id="@+id/textViewFavoriReleased"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:text="@{String.valueOf(game.released), default=Released}"
                 android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/ivFavorite"
-                app:layout_constraintStart_toStartOf="@+id/tvNameOfFavorite"
-                app:layout_constraintTop_toBottomOf="@+id/tvNameOfFavorite" />
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewFavori"
+                app:layout_constraintStart_toStartOf="@+id/textViewFavoriName"
+                app:layout_constraintTop_toBottomOf="@+id/textViewFavoriName" />
 
             <TextView
-                android:id="@+id/tvMetacritic"
+                android:id="@+id/textViewFavoriMetacritic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:ellipsize="end"
                 android:text="@{game.metacritic, default=Metacritic}"
                 android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvReleased"
-                app:layout_constraintStart_toEndOf="@+id/tvReleased" />
+                app:layout_constraintBottom_toBottomOf="@+id/textViewFavoriReleased"
+                app:layout_constraintStart_toEndOf="@+id/textViewFavoriReleased" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
