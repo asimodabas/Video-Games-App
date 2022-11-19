@@ -8,7 +8,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.asimodabas.appcent_interview.R
 import com.asimodabas.appcent_interview.databinding.ActivityMainBinding
-import com.asimodabas.appcent_interview.toastMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,12 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        binding.bottomNavigationView.background = null
-        binding.bottomNavigationView.menu.getItem(1).isEnabled = false
-
-        binding.fab.setOnClickListener {
-            this.toastMessage("Appcent")
-        }
         val navController = findNavController(R.id.fragment)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
