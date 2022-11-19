@@ -35,7 +35,7 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[FavoriteViewModel::class.java]
 
-        viewModel.getFavDB(requireContext())
+//      viewModel.getFavDB(requireContext())
         observeEvents()
     }
 
