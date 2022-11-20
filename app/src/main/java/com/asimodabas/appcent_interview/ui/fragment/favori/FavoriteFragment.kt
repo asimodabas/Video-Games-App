@@ -5,21 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asimodabas.appcent_interview.adapter.FavoriteRecyclerAdapter
 import com.asimodabas.appcent_interview.databinding.FragmentFavoriteBinding
 import com.asimodabas.appcent_interview.model.Detail
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: FavoriteViewModel
+    private val viewModel: FavoriteViewModel by viewModels()
     private lateinit var recyclerAdapter: FavoriteRecyclerAdapter
 
     override fun onCreateView(
@@ -33,32 +31,21 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[FavoriteViewModel::class.java]
-
-//      viewModel.getFavDB(requireContext())
         observeEvents()
     }
 
     fun observeEvents() {
         with(viewModel) {
             favResponse.observe(viewLifecycleOwner) {
-                it?.let {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        viewModel.getFavDB(requireContext())
-                        binding.favoriteRecyclerView.layoutManager =
-                            LinearLayoutManager(requireContext())
-                        binding.favoriteRecyclerView.visibility = View.VISIBLE
-                        withContext(Dispatchers.Main) {
-                            changeRecyclerView(it)
-                        }
-                    }
-                }
+                changeRecyclerView(it)
             }
         }
     }
 
     fun changeRecyclerView(data: List<Detail?>) {
         recyclerAdapter = FavoriteRecyclerAdapter()
+        binding.favoriteRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext())
         binding.favoriteRecyclerView.adapter = recyclerAdapter
         recyclerAdapter.setList(data)
     }

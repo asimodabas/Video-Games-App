@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.asimodabas.appcent_interview.Constants.API_KEY
 import com.asimodabas.appcent_interview.adapter.MainRecyclerAdapter
 import com.asimodabas.appcent_interview.adapter.MainViewPagerAdapter
 import com.asimodabas.appcent_interview.databinding.FragmentMainBinding
@@ -19,6 +18,7 @@ import com.asimodabas.appcent_interview.listener.GameClickListener
 import com.asimodabas.appcent_interview.listener.GameViewPagerListener
 import com.asimodabas.appcent_interview.model.Result
 import com.asimodabas.appcent_interview.toastMessage
+import com.asimodabas.appcent_interview.util.Constants.API_KEY
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

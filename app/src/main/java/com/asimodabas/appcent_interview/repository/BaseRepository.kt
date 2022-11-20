@@ -1,6 +1,6 @@
 package com.asimodabas.appcent_interview.repository
 
-import com.asimodabas.appcent_interview.NetworkCheck
+import com.asimodabas.appcent_interview.util.NetworkCheck
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

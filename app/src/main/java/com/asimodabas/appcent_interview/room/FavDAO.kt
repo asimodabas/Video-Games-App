@@ -16,5 +16,5 @@ interface FavDAO {
     fun delete(gameDetail: Detail)
 
     @Query("SELECT * FROM Detail")
-    fun getDetail(): List<Detail>
+    suspend fun getDetail(): List<Detail>
 }

@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.asimodabas.appcent_interview.Constants
 import com.asimodabas.appcent_interview.R
+import com.asimodabas.appcent_interview.util.Constants
 
 class SplashScreen : AppCompatActivity() {
 

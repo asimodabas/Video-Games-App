@@ -1,8 +1,8 @@
 package com.asimodabas.appcent_interview
 
 import androidx.databinding.ktx.BuildConfig
-import com.asimodabas.appcent_interview.Constants.BASE_URL
 import com.asimodabas.appcent_interview.service.GameAPI
+import com.asimodabas.appcent_interview.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

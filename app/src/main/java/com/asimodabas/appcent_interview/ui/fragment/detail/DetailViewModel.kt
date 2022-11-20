@@ -1,13 +1,12 @@
 package com.asimodabas.appcent_interview.ui.fragment.detail
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.asimodabas.appcent_interview.NetworkCheck
 import com.asimodabas.appcent_interview.model.Detail
 import com.asimodabas.appcent_interview.repository.DetailRepository
-import com.asimodabas.appcent_interview.room.FavDB
+import com.asimodabas.appcent_interview.repository.FavoriteRepository
+import com.asimodabas.appcent_interview.util.NetworkCheck
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,7 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel
 @Inject constructor(
-    private val repository: DetailRepository
+    private val repository: FavoriteRepository,
+    private val detailRepository: DetailRepository
 ) : ViewModel() {
 
     val detailResponse: MutableLiveData<Detail?> = MutableLiveData()
@@ -27,7 +27,7 @@ class DetailViewModel
         apiKey: String
     ) = viewModelScope.launch {
         isLoading.value = true
-        val request = repository.getDetail(id, apiKey)
+        val request = detailRepository.getDetail(id, apiKey)
         when (request) {
             is NetworkCheck.Success -> {
                 isLoading.value = false
@@ -40,13 +40,11 @@ class DetailViewModel
         }
     }
 
-    fun addFav(mContext: Context, detail: Detail) {
-        val dao = FavDB.invoke(mContext).myFavGame()
-        dao.insert(detail)
+    fun addFav(detail: Detail) {
+        repository.insertDetail(detail)
     }
 
-    fun deleteFav(mContext: Context, detail: Detail) {
-        val dao = FavDB.invoke(mContext).myFavGame()
-        dao.delete(detail)
+    fun deleteFav(detail: Detail) {
+        repository.deleteDetail(detail)
     }
 }

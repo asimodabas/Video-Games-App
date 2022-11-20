@@ -15,6 +15,8 @@ class FavoriteRecyclerAdapter() :
         FavoriteViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
+        val currentList = games[position]
+        holder.bind(currentList!!)
     }
 
     class FavoriteViewHolder(private val binding: MyfavoriteRowBinding) :
@@ -32,7 +34,6 @@ class FavoriteRecyclerAdapter() :
                 return FavoriteViewHolder(binding)
             }
         }
-
     }
 
     fun setList(newList: List<Detail?>) {

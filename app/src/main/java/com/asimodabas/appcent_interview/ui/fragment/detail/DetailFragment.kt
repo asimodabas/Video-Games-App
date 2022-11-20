@@ -9,12 +9,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.asimodabas.appcent_interview.Constants.API_KEY
 import com.asimodabas.appcent_interview.R
 import com.asimodabas.appcent_interview.databinding.FragmentDetailBinding
 import com.asimodabas.appcent_interview.loadImage
 import com.asimodabas.appcent_interview.model.Detail
 import com.asimodabas.appcent_interview.toastMessage
+import com.asimodabas.appcent_interview.util.Constants.API_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -88,7 +88,7 @@ class DetailFragment : Fragment() {
                 detail.favorite = false
 
                 CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.deleteFav(requireContext(), detail)
+                    viewModel.deleteFav(detail)
 
                     val sharedPref =
                         requireContext().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
@@ -99,7 +99,7 @@ class DetailFragment : Fragment() {
                 detail.favorite = true
 
                 CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.addFav(requireContext(), detail)
+                    viewModel.addFav(detail)
 
                     val sharedPref =
                         requireContext().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)

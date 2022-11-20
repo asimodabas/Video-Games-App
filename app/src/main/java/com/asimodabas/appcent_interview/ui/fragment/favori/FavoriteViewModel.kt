@@ -1,12 +1,18 @@
 package com.asimodabas.appcent_interview.ui.fragment.favori
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.asimodabas.appcent_interview.model.Detail
-import com.asimodabas.appcent_interview.room.FavDB
+import com.asimodabas.appcent_interview.repository.FavoriteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavoriteViewModel : ViewModel() {
+@HiltViewModel
+class FavoriteViewModel @Inject constructor(
+    private val repository: FavoriteRepository,
+) : ViewModel() {
 
     val favResponse: MutableLiveData<List<Detail?>> = MutableLiveData()
 
@@ -14,9 +20,12 @@ class FavoriteViewModel : ViewModel() {
         favResponse.value = favoriteGameList
     }
 
-    fun getFavDB(context: Context) {
-        val dao = FavDB(context).myFavGame()
-        val favoriteGames = dao.getDetail()
-        showFavGame(favoriteGames)
+    init {
+        getFavorites()
+    }
+
+    fun getFavorites() = viewModelScope.launch {
+        val result = repository.getDetails()
+        favResponse.value = result
     }
 }
