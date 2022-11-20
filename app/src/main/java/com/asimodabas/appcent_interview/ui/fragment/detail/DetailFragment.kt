@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.asimodabas.appcent_interview.R
 import com.asimodabas.appcent_interview.databinding.FragmentDetailBinding
@@ -25,7 +25,7 @@ class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: DetailViewModel
+    private val viewModel: DetailViewModel by viewModels()
     private lateinit var nowData: Detail
     private val args by navArgs<DetailFragmentArgs>()
 
@@ -40,8 +40,6 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[DetailViewModel::class.java]
-
         viewModel.getDetail(args.argId, API_KEY)
         observeEvents()
     }

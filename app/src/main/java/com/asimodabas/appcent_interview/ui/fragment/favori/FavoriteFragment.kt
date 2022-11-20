@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asimodabas.appcent_interview.adapter.FavoriteRecyclerAdapter
 import com.asimodabas.appcent_interview.databinding.FragmentFavoriteBinding
@@ -13,7 +14,7 @@ import com.asimodabas.appcent_interview.model.Detail
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : Fragment(), FavoriteRecyclerAdapter.OnClickFavorite {
 
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
@@ -34,6 +35,11 @@ class FavoriteFragment : Fragment() {
         observeEvents()
     }
 
+    override fun onClickItem(id: Int) {
+        val action = FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(id)
+        findNavController().navigate(action)
+    }
+
     fun observeEvents() {
         with(viewModel) {
             favResponse.observe(viewLifecycleOwner) {
@@ -43,7 +49,7 @@ class FavoriteFragment : Fragment() {
     }
 
     fun changeRecyclerView(data: List<Detail?>) {
-        recyclerAdapter = FavoriteRecyclerAdapter()
+        recyclerAdapter = FavoriteRecyclerAdapter(this)
         binding.favoriteRecyclerView.layoutManager =
             LinearLayoutManager(requireContext())
         binding.favoriteRecyclerView.adapter = recyclerAdapter

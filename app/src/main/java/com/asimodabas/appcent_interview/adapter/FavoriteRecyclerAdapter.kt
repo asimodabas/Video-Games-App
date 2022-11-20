@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.asimodabas.appcent_interview.databinding.MyfavoriteRowBinding
 import com.asimodabas.appcent_interview.model.Detail
 
-class FavoriteRecyclerAdapter() :
+class FavoriteRecyclerAdapter(private val listener: OnClickFavorite) :
     RecyclerView.Adapter<FavoriteRecyclerAdapter.FavoriteViewHolder>() {
 
     private var games = ArrayList<Detail?>()
@@ -16,6 +16,11 @@ class FavoriteRecyclerAdapter() :
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         val currentList = games[position]
+        holder.itemView.setOnClickListener {
+            if (currentList != null) {
+                listener.onClickItem(currentList.id!!)
+            }
+        }
         holder.bind(currentList!!)
     }
 
@@ -34,6 +39,10 @@ class FavoriteRecyclerAdapter() :
                 return FavoriteViewHolder(binding)
             }
         }
+    }
+
+    interface OnClickFavorite {
+        fun onClickItem(id: Int)
     }
 
     fun setList(newList: List<Detail?>) {
