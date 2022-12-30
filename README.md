@@ -35,4 +35,3 @@ App Images
 [11]: https://developer.android.com/topic/libraries/view-binding
 [12]: https://developer.android.com/topic/libraries/data-binding
 [13]: https://developer.android.com/topic/libraries/architecture/livedata
-
