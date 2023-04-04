@@ -10,11 +10,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asimodabas.appcent_interview.adapter.FavoriteRecyclerAdapter
 import com.asimodabas.appcent_interview.databinding.FragmentFavoriteBinding
+import com.asimodabas.appcent_interview.listener.FavoriteClickListener
 import com.asimodabas.appcent_interview.model.Detail
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavoriteFragment : Fragment(), FavoriteRecyclerAdapter.OnClickFavorite {
+class FavoriteFragment : Fragment(), FavoriteClickListener {
 
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
@@ -22,8 +23,7 @@ class FavoriteFragment : Fragment(), FavoriteRecyclerAdapter.OnClickFavorite {
     private lateinit var recyclerAdapter: FavoriteRecyclerAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -50,8 +50,7 @@ class FavoriteFragment : Fragment(), FavoriteRecyclerAdapter.OnClickFavorite {
 
     fun changeRecyclerView(data: List<Detail?>) {
         recyclerAdapter = FavoriteRecyclerAdapter(this)
-        binding.favoriteRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext())
+        binding.favoriteRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.favoriteRecyclerView.adapter = recyclerAdapter
         recyclerAdapter.setList(data)
     }

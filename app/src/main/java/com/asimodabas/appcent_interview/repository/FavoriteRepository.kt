@@ -4,7 +4,8 @@ import com.asimodabas.appcent_interview.model.Detail
 import com.asimodabas.appcent_interview.room.FavDAO
 import javax.inject.Inject
 
-class FavoriteRepository @Inject constructor(
+class FavoriteRepository
+@Inject constructor(
     private val dao: FavDAO
 ) {
     suspend fun getDetails() = dao.getDetail()

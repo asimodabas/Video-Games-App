@@ -2,7 +2,7 @@ package com.asimodabas.appcent_interview.adapter
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.asimodabas.appcent_interview.loadImage
+import com.asimodabas.appcent_interview.util.loadImage
 
 class GameBindingAdapter {
     companion object {

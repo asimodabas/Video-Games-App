@@ -17,8 +17,8 @@ import com.asimodabas.appcent_interview.databinding.FragmentMainBinding
 import com.asimodabas.appcent_interview.listener.GameClickListener
 import com.asimodabas.appcent_interview.listener.GameViewPagerListener
 import com.asimodabas.appcent_interview.model.Result
-import com.asimodabas.appcent_interview.toastMessage
 import com.asimodabas.appcent_interview.util.Constants.API_KEY
+import com.asimodabas.appcent_interview.util.toastMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,8 +32,7 @@ class MainFragment : Fragment() {
     private lateinit var viewPager: ViewPager2
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -49,7 +48,6 @@ class MainFragment : Fragment() {
     fun observeEvents() {
         with(viewModel) {
             gameResponse.observe(viewLifecycleOwner, Observer {
-
                 it?.let {
                     it.results?.let { it1 -> setRecycler(it1) }
                     it.results?.let { it2 -> changeSearchView(it2) }
@@ -74,11 +72,7 @@ class MainFragment : Fragment() {
             }
 
             override fun GameFilter(nameLength: Int) {
-                if (false) {
-                    binding.infoLayout.visibility = View.VISIBLE
-                } else {
-                    binding.infoLayout.visibility = View.GONE
-                }
+                binding.infoLayout.visibility = View.GONE
             }
         })
 
@@ -123,8 +117,7 @@ class MainFragment : Fragment() {
     }
 
     private fun addTopThreeGame(
-        data: List<Result>,
-        topThreeGame: ArrayList<Result>
+        data: List<Result>, topThreeGame: ArrayList<Result>
     ): ArrayList<Result> {
         topThreeGame.add(data[0])
         topThreeGame.add(data[1])

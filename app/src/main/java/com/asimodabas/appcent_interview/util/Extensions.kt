@@ -1,4 +1,4 @@
-package com.asimodabas.appcent_interview
+package com.asimodabas.appcent_interview.util
 
 import android.content.Context
 import android.widget.ImageView

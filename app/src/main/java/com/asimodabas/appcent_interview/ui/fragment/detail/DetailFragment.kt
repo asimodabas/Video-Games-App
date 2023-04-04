@@ -11,10 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.asimodabas.appcent_interview.R
 import com.asimodabas.appcent_interview.databinding.FragmentDetailBinding
-import com.asimodabas.appcent_interview.loadImage
 import com.asimodabas.appcent_interview.model.Detail
-import com.asimodabas.appcent_interview.toastMessage
 import com.asimodabas.appcent_interview.util.Constants.API_KEY
+import com.asimodabas.appcent_interview.util.loadImage
+import com.asimodabas.appcent_interview.util.toastMessage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,8 +30,7 @@ class DetailFragment : Fragment() {
     private val args by navArgs<DetailFragmentArgs>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         val view = binding.root
