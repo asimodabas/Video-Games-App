@@ -35,7 +35,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_appcent" />
+                app:srcCompat="@drawable/ic_videogames" />
 
             <TextView
                 android:id="@+id/textViewName"
