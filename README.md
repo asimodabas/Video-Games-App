@@ -1,4 +1,4 @@
-# Appcent-Interview
+# Video-Games-App
 
 Libraries Used
 --------------
@@ -19,7 +19,7 @@ Libraries Used
 App Images
 --------------
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/71982171/207928357-b2e05eb7-6b82-4d5d-bbb7-2d4f94c05273.gif" alt="GIF" />
+  <img src="https://user-images.githubusercontent.com/71982171/235326180-37ad5765-12c5-4322-b9ef-668875c987f2.gif" alt="GIF" />
 </p>
 
 MIT License
