@@ -18,9 +18,7 @@ class DatabaseModule() {
     @Provides
     fun provideFavDatabase(@ApplicationContext context: Context): FavDB {
         return Room.databaseBuilder(
-            context,
-            FavDB::class.java,
-            "favdb"
+            context, FavDB::class.java, "favdb"
         ).build()
     }
 

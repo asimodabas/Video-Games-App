@@ -16,10 +16,10 @@ class MainRecyclerAdapter(private val listener: GameClickListener) :
 
     class MViewHolder(private val binding: MainRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(listener: GameClickListener, game: Result) {
-            binding.onClickListener = listener
+        fun bind(listener: GameClickListener, game: Result) = with(binding) {
+            onClickListener = listener
             binding.game = game
-            binding.executePendingBindings()
+            executePendingBindings()
         }
 
         companion object {

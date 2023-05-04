@@ -28,9 +28,9 @@ class FavoriteRecyclerAdapter(private val listener: FavoriteClickListener) :
     class FavoriteViewHolder(private val binding: MyfavoriteRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(gameDetail: Detail) {
-            binding.game = gameDetail
-            binding.executePendingBindings()
+        fun bind(gameDetail: Detail) = with(binding) {
+            game = gameDetail
+            executePendingBindings()
         }
 
         companion object {

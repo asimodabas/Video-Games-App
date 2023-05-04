@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -47,17 +46,17 @@ class MainFragment : Fragment() {
 
     fun observeEvents() {
         with(viewModel) {
-            gameResponse.observe(viewLifecycleOwner, Observer {
+            gameResponse.observe(viewLifecycleOwner) {
                 it?.let {
                     it.results?.let { it1 -> setRecycler(it1) }
                     it.results?.let { it2 -> changeSearchView(it2) }
                     it.results?.let { it3 -> changeViewPager(it3) }
                 }
-            })
+            }
 
-            onError.observe(viewLifecycleOwner, Observer {
+            onError.observe(viewLifecycleOwner) {
                 requireContext().toastMessage(it.toString())
-            })
+            }
         }
     }
 
@@ -127,10 +126,12 @@ class MainFragment : Fragment() {
 
     private fun initViewPager(newIndexThreeGame: ArrayList<Result>) {
         viewPager = binding.mainViewPager
-        viewPager.offscreenPageLimit = 3
-        viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-        viewPagerAdapter.setList(newIndexThreeGame)
-        viewPager.adapter = viewPagerAdapter
+        with(viewPager) {
+            offscreenPageLimit = 3
+            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            viewPagerAdapter.setList(newIndexThreeGame)
+            adapter = viewPagerAdapter
+        }
     }
 
     override fun onDestroy() {

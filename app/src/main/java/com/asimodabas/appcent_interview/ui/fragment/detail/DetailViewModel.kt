@@ -14,8 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel
 @Inject constructor(
-    private val repository: FavoriteRepository,
-    private val detailRepository: DetailRepository
+    private val repository: FavoriteRepository, private val detailRepository: DetailRepository
 ) : ViewModel() {
 
     val detailResponse: MutableLiveData<Detail?> = MutableLiveData()
@@ -23,8 +22,7 @@ class DetailViewModel
     val onError: MutableLiveData<String?> = MutableLiveData()
 
     fun getDetail(
-        id: Int,
-        apiKey: String
+        id: Int, apiKey: String
     ) = viewModelScope.launch {
         isLoading.value = true
         val request = detailRepository.getDetail(id, apiKey)

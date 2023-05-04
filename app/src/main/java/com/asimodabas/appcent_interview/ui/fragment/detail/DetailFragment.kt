@@ -47,25 +47,29 @@ class DetailFragment : Fragment() {
         with(viewModel) {
             detailResponse.observe(viewLifecycleOwner) {
                 it?.let {
-                    myVisibilties(false)
-                    nowData = it
-                    val sharedPref =
-                        requireContext().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-                    val isGameInFavorites = sharedPref.getBoolean(nowData.name, false)
-                    if (isGameInFavorites) {
-                        binding.imageViewFavFab.setImageResource(R.drawable.ic_fav)
-                        it.favorite = true
-                    } else {
-                        binding.imageViewFavFab.setImageResource(R.drawable.ic_fav_null)
-                        it.favorite = false
+                    with(binding) {
+                        myVisibilties(false)
+                        nowData = it
+                        val sharedPref = requireContext().getSharedPreferences(
+                            "sharedPrefs", Context.MODE_PRIVATE
+                        )
+                        val isGameInFavorites = sharedPref.getBoolean(nowData.name, false)
+                        if (isGameInFavorites) {
+                            imageViewFavFab.setImageResource(R.drawable.ic_fav)
+                            it.favorite = true
+                        } else {
+                            imageViewFavFab.setImageResource(R.drawable.ic_fav_null)
+                            it.favorite = false
+                        }
+                        imageViewDetail.loadImage(it.imageUrl.toString())
+                        textViewGameName.text = it.name
+                        textViewReleased.text = it.released
+                        textViewMetacritic.text = it.metacritic
+                        textViewDescription.text = it.description
+                        favClickButton(it)
                     }
-                    binding.imageViewDetail.loadImage(it.imageUrl.toString())
-                    binding.textViewGameName.text = it.name
-                    binding.textViewReleased.text = it.released
-                    binding.textViewMetacritic.text = it.metacritic
-                    binding.textViewDescription.text = it.description
-                    favClickButton(it)
                 }
+
             }
 
             isLoading.observe(viewLifecycleOwner) {
@@ -78,41 +82,43 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun favClickButton(detail: Detail) {
-        binding.imageViewFavFab.setOnClickListener {
+    private fun favClickButton(detail: Detail) = with(binding) {
+        imageViewFavFab.setOnClickListener {
             if (detail.favorite) {
-                binding.imageViewFavFab.setImageResource(R.drawable.ic_fav_null)
+                imageViewFavFab.setImageResource(R.drawable.ic_fav_null)
                 detail.favorite = false
 
                 CoroutineScope(Dispatchers.IO).launch {
                     viewModel.deleteFav(detail)
 
-                    val sharedPref =
-                        requireContext().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+                    val sharedPref = requireContext().getSharedPreferences(
+                        "sharedPrefs", Context.MODE_PRIVATE
+                    )
                     sharedPref.edit().remove(detail.name).apply()
                 }
             } else {
-                binding.imageViewFavFab.setImageResource(R.drawable.ic_fav)
+                imageViewFavFab.setImageResource(R.drawable.ic_fav)
                 detail.favorite = true
 
                 CoroutineScope(Dispatchers.IO).launch {
                     viewModel.addFav(detail)
 
-                    val sharedPref =
-                        requireContext().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+                    val sharedPref = requireContext().getSharedPreferences(
+                        "sharedPrefs", Context.MODE_PRIVATE
+                    )
                     sharedPref.edit().putBoolean(detail.name, true).apply()
                 }
             }
         }
     }
 
-    private fun myVisibilties(isLoading: Boolean = false) {
-        binding.imageViewDetail.isVisible = !isLoading
-        binding.imageViewFavFab.isVisible = !isLoading
-        binding.textViewGameName.isVisible = !isLoading
-        binding.textViewReleased.isVisible = !isLoading
-        binding.textViewMetacritic.isVisible = !isLoading
-        binding.textViewDescription.isVisible = !isLoading
+    private fun myVisibilties(isLoading: Boolean = false) = with(binding) {
+        imageViewDetail.isVisible = !isLoading
+        imageViewFavFab.isVisible = !isLoading
+        textViewGameName.isVisible = !isLoading
+        textViewReleased.isVisible = !isLoading
+        textViewMetacritic.isVisible = !isLoading
+        textViewDescription.isVisible = !isLoading
     }
 
     override fun onDestroy() {

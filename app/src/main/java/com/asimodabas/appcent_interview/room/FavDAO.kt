@@ -1,10 +1,6 @@
 package com.asimodabas.appcent_interview.room
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.asimodabas.appcent_interview.model.Detail
 
 @Dao

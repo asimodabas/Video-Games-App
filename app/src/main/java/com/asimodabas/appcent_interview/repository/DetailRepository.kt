@@ -9,8 +9,7 @@ class DetailRepository
 ) : BaseRepository() {
 
     suspend fun getDetail(
-        id: Int,
-        apiKey: String
+        id: Int, apiKey: String
     ) = safeApiRequest {
         gameAPI.getGameDetail(id, apiKey)
     }

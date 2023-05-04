@@ -50,8 +50,10 @@ class FavoriteFragment : Fragment(), FavoriteClickListener {
 
     fun changeRecyclerView(data: List<Detail?>) {
         recyclerAdapter = FavoriteRecyclerAdapter(this)
-        binding.favoriteRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.favoriteRecyclerView.adapter = recyclerAdapter
+        with(binding) {
+            favoriteRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            favoriteRecyclerView.adapter = recyclerAdapter
+        }
         recyclerAdapter.setList(data)
     }
 }

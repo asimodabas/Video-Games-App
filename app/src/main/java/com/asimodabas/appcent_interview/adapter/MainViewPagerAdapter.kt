@@ -20,9 +20,7 @@ class MainViewPagerAdapter(private val listener: GameViewPagerListener) :
         private val gameImage: ImageView = itemView.findViewById(R.id.imageViewPager)
 
         fun bind(listener: GameViewPagerListener, game: Result) {
-            Glide.with(itemView.context)
-                .load(game.imageUrl)
-                .into(gameImage)
+            Glide.with(itemView.context).load(game.imageUrl).into(gameImage)
 
             itemView.setOnClickListener {
                 listener.ViewPagerClick(game)
