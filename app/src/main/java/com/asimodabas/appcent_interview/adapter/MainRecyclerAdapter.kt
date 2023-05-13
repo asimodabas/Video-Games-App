@@ -15,7 +15,6 @@ class MainRecyclerAdapter(private val listener: GameClickListener) :
     private var data = ArrayList<Result>()
 
     class MViewHolder(private val binding: MainRowBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(listener: GameClickListener, game: Result) = with(binding) {
             onClickListener = listener
             binding.game = game

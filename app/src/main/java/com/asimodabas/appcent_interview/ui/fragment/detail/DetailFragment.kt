@@ -26,8 +26,8 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DetailViewModel by viewModels()
-    private lateinit var nowData: Detail
     private val args by navArgs<DetailFragmentArgs>()
+    private lateinit var nowData: Detail
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -69,7 +69,6 @@ class DetailFragment : Fragment() {
                         favClickButton(it)
                     }
                 }
-
             }
 
             isLoading.observe(viewLifecycleOwner) {
@@ -90,10 +89,8 @@ class DetailFragment : Fragment() {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     viewModel.deleteFav(detail)
-
-                    val sharedPref = requireContext().getSharedPreferences(
-                        "sharedPrefs", Context.MODE_PRIVATE
-                    )
+                    val sharedPref =
+                        requireContext().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
                     sharedPref.edit().remove(detail.name).apply()
                 }
             } else {
