@@ -7,12 +7,13 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace = "com.asimodabas.appcent_interview"
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.asimodabas.appcent_interview"
         minSdk 23
-        targetSdk 32
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
